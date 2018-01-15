@@ -1,0 +1,58 @@
+﻿@model GessNumber.Models.GuessingNumber
+
+@{
+    ViewBag.Title = "GessingGame";
+}
+<h2>GessingGame</h2>
+
+<h2>@ViewBag.message</h2>
+<!-- we have to check view bag if it was equal null or not to avoid having exception because we use view just in post then we have to check it in get for first run  -->
+@if (ViewBag.found != null && ViewBag.found)
+{
+    //because i don not have parameter name in routing then I use like this "?reset=true" we use this in get method
+    <a href="?reset=true">Reset</a>
+}
+
+<!--desplay informations and the result-->
+<form action="/" method="post">
+    <div class="form-group">
+        <label>Gess the number</label>
+        <!--we can add an idea to forcing user to not submiting until press reset we can do that like this " @@((ViewBag.found)?"disabled":"")"-->
+        <!--@@((ViewBag.found)?"disabled" it means if (ViewBag.found=true then put this input disabled and if false do not do any thing just : "" and we can added to subimet button-->
+        <input name="guess" @((ViewBag.found != null && ViewBag.found) ? "disabled" : "") autocomplete="off" class="form-control" type="number" />
+    </div>
+    <input type="submit" @((ViewBag.found != null && ViewBag.found) ? "disabled" : "") class="btn btn-sm btn-success" value="Check" />
+</form>
+
+@if (ViewBag.found != null && ViewBag.found)
+{
+    <table class="table-responsive">
+        <tr>
+            <th>
+                @Html.LabelFor(x => x.Id)
+            </th>
+            <th>
+                @Html.LabelFor(x => x.GuessingNum)
+            </th>
+            <th>
+                @Html.LabelFor(x => x.Description)
+            </th>
+        </tr>
+        <tr>  
+            @foreach (var item in Model.Guess)
+             {
+            <td>
+                @Html.TextBoxFor(x => x.Id)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.GuessingNum)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Description)
+            </td>
+             }
+        </tr>
+    </table>
+
+}
+
