@@ -65,7 +65,7 @@ namespace GessNumber.Controllers
 
                 ViewBag.found = true;
             }
-                gessingList.Guess.Add(gessingList);
+               // gessingList.Guess.Add(gessingList);
 
             return View(gessingList);
         }

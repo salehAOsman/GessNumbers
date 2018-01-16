@@ -14,8 +14,9 @@ namespace GessNumber.Models
         public int GuessingNum { get; set; }
         [Display(Name= "Description")]
         public string Description { get; set; }
-
-        public List<GuessingNumber> Guess = new List<GuessingNumber>();
+        
+        //bettre to make list in individual place
+        //public List<GuessingNumber> Guess = new List<GuessingNumber>();
         
 
         //GuessingNumber(int guess,string descript)
